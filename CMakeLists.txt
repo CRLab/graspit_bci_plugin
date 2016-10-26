@@ -99,10 +99,6 @@ MESSAGE("catkin_INCLUDE_DIRS: ${catkin_INCLUDE_DIRS}")
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(include include/BCI include/BCI/utils ui ${catkin_INCLUDE_DIRS} ${QT_INCLUDES} )
-#include_directories(/home/armuser/ros/graspit_bci_plugin_ws/src/graspit-ros/graspit/graspit_source/src)
-#include_directories(/home/armuser/ros/graspit_bci_plugin_ws/src/graspit-ros/graspit/graspit_source/src/DBase)
-#include_directories(/home/armuser/ros/graspit_bci_plugin_ws/src/graspit-ros/graspit/graspit_source/src/DBase/DBPlanner)
-#include_directories(/home/armuser/ros/graspit_bci_plugin_ws/build/graspit-ros/graspit/ui)
 
 # Make sure the compiler can find the pre-processed files from qt4_wrap_ui
 include_directories("${CMAKE_BINARY_DIR}")
