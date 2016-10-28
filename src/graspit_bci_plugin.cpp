@@ -43,38 +43,19 @@ int GraspitBCIPlugin::init(int argc, char **argv)
 
     qRegisterMetaType<transf>("transf");
     //copy the arguments somewhere else so we can pass them to ROS
-    int ros_argc = argc;
-    char** ros_argv = new char*[argc];
-    for (int i = 0; i < argc; i++)
-    {
-        ros_argv[i] = new char[strlen(argv[i])];
-        strcpy(ros_argv[i], argv[i]);
-    }
-    //see if a node name was requested
-    std::string node_name("ros_graspit_interface");
-    for (int i = 0; i < argc - 1; i++)
-    {
-        //std::cerr << argv[i] << "\n";
-        if (!strcmp(argv[i], "_name"))
-        {
-            node_name = argv[i + 1];
-        }
-    }
 
-    ros::init(ros_argc, ros_argv, node_name.c_str());
-    root_nh_ = new ros::NodeHandle("");
-
-    for (int i = 0; i < argc; i++)
-    {
-        delete ros_argv[i];
-    }
-    delete ros_argv;
+    ros::init(argc, argv, "graspit_bci_plugin_node");
+    root_nh_ = new ros::NodeHandle("graspit_bci_plugin_node");
 
 
 
+
+    ROS_INFO("about to load world");
     //this should go away, just a hack
-    QString worldfile = QString(getenv("GRASPIT")) + QString("/worlds/allVision2fromjon.xml");
-    std::cout<<worldfile.toStdString().c_str()<<std::endl;
+    std::string world_name;
+    root_nh_->getParam("/world_file", world_name);
+    QString worldfile = QString(getenv("GRASPIT")) + QString(world_name.c_str());
+    ROS_INFO(worldfile.toStdString().c_str());
     graspitCore->getWorld()->load(worldfile.toStdString().c_str());
 
 

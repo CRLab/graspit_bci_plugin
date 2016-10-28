@@ -2,7 +2,8 @@
 
    <arg name="use_bci_device" default="False" />  
 
-   <param name="use_hardware" value="True" />
+   <param name="use_hardware" value="True" />  
+   <param name="world_file" value="/worlds/fetch22_ws.xml" />
    
   <node name="graspit_ros" pkg="graspit" type="graspit_simulator" args=" -p libgraspit_bci_plugin" output="screen" >
     <env name="GRASPIT" value="$(find graspit)/graspit_source"/>
