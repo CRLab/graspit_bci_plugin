@@ -32,7 +32,7 @@ void ReachabilityAnalyzer::buildCheckReachabilityRequest(const GraspPlanningStat
        goal.grasp.pre_grasp_dof.push_back(dof[i]);
     }
 
-    transf finalHandTransform = gps->readPosition()->getCoreTran();
+    transf finalHandTransform = gps->getHand()->getApproachTran() * gps->readPosition()->getCoreTran();
 
     float tx = finalHandTransform.translation().x() / 1000;
     float ty = finalHandTransform.translation().y() / 1000;
