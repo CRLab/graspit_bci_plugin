@@ -55,7 +55,7 @@ int GraspitBCIPlugin::init(int argc, char **argv)
     std::string world_name;
     root_nh_->getParam("/world_file", world_name);
     QString worldfile = QString(getenv("GRASPIT")) + QString(world_name.c_str());
-    ROS_INFO(worldfile.toStdString().c_str());
+    ROS_INFO("%s", worldfile.toStdString().c_str());
     graspitCore->getWorld()->load(worldfile.toStdString().c_str());
 
 
